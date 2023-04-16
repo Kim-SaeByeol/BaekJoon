@@ -40,17 +40,13 @@ public class BJ_10811 {
         for (int k = 0; k < M; k++) {
             int i = sc.nextInt();
             int j = sc.nextInt();
-            for (int w = 0; w < (j - i / 2) + i; w++) {
+            for (int w = 0; w < (j - i + 1); w++) {
                 change = arr[i - 1];
                 arr[i - 1] = arr[j - 1];
                 arr[j - 1] = change;
                 i++;
                 j--;
-                System.out.println((int)(j - i / 2));
-                System.out.println(" " +i +j);
             }
-            for (int w = 0; w < arr.length; w++)
-                System.out.print(arr[w] + " ");
         }
         for (int i = 0; i < arr.length; i++)
             System.out.print(arr[i] + " ");
