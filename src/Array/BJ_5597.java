@@ -2,49 +2,57 @@ package Array;
 
 import java.util.Scanner;
 
-//과제 안 내신 분..?
-/*
-X대학 M교수님은 프로그래밍 수업을 맡고 있다. 교실엔 학생이 30명이 있는데, 학생 명부엔 각 학생별로 1번부터 30번까지 출석번호가 붙어 있다.
-
-교수님이 내준 특별과제를 28명이 제출했는데, 그 중에서 제출 안 한 학생 2명의 출석번호를 구하는 프로그램을 작성하시오.
- */
+//과제 안 내신 분?
 public class BJ_5597 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int std[] = new int[28];
+        int number[] = new int[30];
 
-        //boolean이 0, -0, null, false, NaN, undefined, 빈문자열 ("") 이라면 false.
-        //boolean 의 초기값으로 아무것도 설정하지 않으면 false 라는 뜻이다.
+        for (int i = 0; i < number.length; i++)
+            number[i] = i + 1;
 
-        //학생 수는 30명.
-        //입력을 1~30 으로 받을 것이기에 배열 31칸을 생성하였다.
-        boolean std[] = new boolean[31];
+        System.out.println("오늘 수업은 30명이군요.");
+        System.out.println("출석 부르겠습니다.");
 
-        //교수님이 내준 특별과제를 28명이 제출
-        for (int i = 0; i < 28; i++) {
-            int num = sc.nextInt();
-            //입력값 크기 지정.
-            if(0 < num && num < 31) {
-                if (std[num] == true) {
-                    System.out.println("중복입니다. 다시 입력해주세요.");
-                    --i;
-                }
-                //낸 사람은 O 표시. (true 리턴)
-                //sum 값은 1 ~ 30이므로 인덱스 값으로 num 을 주어 O, X 체크를 한 것이다.
-                std[num] = true;
-                System.out.println("<" + (i + 1) + "번 부름>");
+
+        //출석번호 입력.
+        int num;
+        for (int i = 0; i <= std.length; i++) {
+            num = sc.nextInt();
+            if (1 <= num && num <= 30) {
+                std[i] = num;
             } else {
-                System.out.println("그 번호의 학생은 없습니다.");
+                System.out.println("그 번호 학생은 없는데요? 다시 말해주시겠어요?");
                 --i;
             }
-        }
-        //안 낸 사람은 true가 아니므로 x 표시. (false 리턴)
-        //i는 1~30 을 나타내야하기에 시작값 1 부터 끝 값 std.length() = 31.
-        for (int i = 1; i < std.length; i++) {
-            if (std[i] == false) {
-                //불리지 않은 사람의 출석번호 출력
-                System.out.println(i);
-            }
+            if (i != 0)
+                for (int j = 1; j < std.length; j++)
+                    if (std[i] == std[j]) {
+                        System.out.println("학생번호가 중복되었습니다. 다시 입력해주세요.");
+                        --i;
+                    }
+            System.out.println("<총 출석자 " + (i + 1) + "명>");
         }
 
+
+        int q = 0, w = 0;
+        System.out.print("안온 학생은 ");
+        for (int i = 0; i < std.length; i++)
+            for (int j = 1; j <= number.length; j++) {
+                if (std[i] == j) {
+                    number[j - 1] = 0;
+                    if (number[i] != 0)
+                        if (q == 0) {
+                            number[i] = q;
+                        } else {
+                            number[i] = w;
+                        }
+                }
+            }
+        if (q > w)
+            System.out.println(q + "번, " + w + "번");
+        if (w > q)
+            System.out.println(w + "번, " + q + "번");
     }
 }

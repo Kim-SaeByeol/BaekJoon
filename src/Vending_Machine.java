@@ -79,7 +79,6 @@ public class Vending_Machine {
                     System.out.println("요청하신 제품 '" + menu[ten][unit] + "' 나왔습니다.");
                 }
             }
-
         }
         //if 문을 빠져나오거나 모두 실행하면 마주치는 인삿말.
         System.out.println("이용해주셔서 감사합니다.");
