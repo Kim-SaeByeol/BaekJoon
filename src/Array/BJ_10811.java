@@ -36,19 +36,21 @@ public class BJ_10811 {
         //<4> 반복할 횟수 M 지정.
         int M = sc.nextInt();
 
-        int change;
+
         for (int k = 0; k < M; k++) {
-            int i = sc.nextInt();
-            int j = sc.nextInt();
-            for (int w = 0; w < (j - i + 1); w++) {
-                change = arr[i - 1];
-                arr[i - 1] = arr[j - 1];
-                arr[j - 1] = change;
-                i++;
-                j--;
+            int i = sc.nextInt() - 1;
+            int j = sc.nextInt() - 1;
+            while (i < j) {
+                int change = arr[i];
+                arr[i++] = arr[j];
+                arr[j--] = change;
             }
         }
-        for (int i = 0; i < arr.length; i++)
-            System.out.print(arr[i] + " ");
+        String ret = "";
+        for (int j = 0; j < arr.length; j++) {
+            ret += arr[j] + " ";
+        }
+        System.out.print(ret.trim());
+        sc.close();
     }
 }
